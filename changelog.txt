@@ -1,2 +1,5 @@
+0.10.0
+ - Added the "Colour space/range" setting (hdmi_pixel_encoding)
+
 0.9.0
  - Initial version.

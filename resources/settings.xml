@@ -15,6 +15,7 @@
         <setting label="Force HDMI (hdmi_force_hotplug)" type="bool" id="hdmi_force_hotplug"/>
         <setting label="Mode (hdmi_drive)" type="enum" id="hdmi_drive" values="-|DVI|HDMI" default="2"/>
         <setting label="Force all audio formats (hdmi_force_edid_audio)" type="bool" id="hdmi_force_edid_audio"/>
+        <setting label="Colour space/range (hdmi_pixel_encoding)" type="enum" id="hdmi_pixel_encoding" values="default|RGB limited|RGB full|YCbCr limited|YCbCr full" default="0"/>
         <setting label="Composite" type="lsep"/>
         <setting label="Mode (sdtv_mode)" type="enum" id="sdtv_mode" values="NTSC|Japan|PAL|Brazil" default="0"/>
         <setting label="Aspect (sdtv_aspect)" type="enum" id="sdtv_aspect" values="-|4:3|14:9|16:9" default="1"/>
