@@ -2,11 +2,38 @@
 <settings>
     <category label="Overclocking">
         <setting label="Preset" type="labelenum" id="overclock_preset" values="Custom|None|Turbo|High|Medium|Modest" default="None"/>
-        <setting label="ARM frequency (arm_freq)" type="slider" id="arm_freq" subsetting="true" visible="eq(-1,0)" default="700" range="700,10,1200" option="int"/>
-        <setting label="Core frequency (core_freq)" type="slider" id="core_freq" subsetting="true" visible="eq(-2,0)" default="250" range="250,10,500" option="int"/>
-        <setting label="SDRAM frequency (sdram_freq)" type="slider" id="sdram_freq" subsetting="true" visible="eq(-3,0)" default="400" range="400,10,600" option="int"/>
-        <setting label="ARM voltage adjustment (over_voltage)" type="slider" id="over_voltage" subsetting="true" visible="eq(-4,0)" default="0" range="0,1,8" option="int"/>
-        <setting label="SDRAM voltage adjustment (over_voltage_sdram)" type="slider" id="over_voltage_sdram" subsetting="true" visible="eq(-5,0)" default="0" range="0,1,8" option="int"/>
+
+        <setting label="[COLOR grey2]ARM frequency (arm_freq) = [/COLOR][COLOR white]800[/COLOR]" type="lsep" visible="eq(-1,5)" subsetting="true"/>
+        <setting label="[COLOR grey2]ARM frequency (arm_freq) = [/COLOR][COLOR white]900[/COLOR]" type="lsep" visible="eq(-2,4)" subsetting="true"/>
+        <setting label="[COLOR grey2]ARM frequency (arm_freq) = [/COLOR][COLOR white]950[/COLOR]" type="lsep" visible="eq(-3,3)" subsetting="true"/>
+        <setting label="[COLOR grey2]ARM frequency (arm_freq) = [/COLOR][COLOR white]1000[/COLOR]" type="lsep" visible="eq(-4,2)" subsetting="true"/>
+        
+        <setting label="[COLOR grey2]Core frequency (core_freq) = [/COLOR][COLOR white]300[/COLOR]" type="lsep" visible="eq(-5,5)" subsetting="true"/>
+        <setting label="[COLOR grey2]Core frequency (core_freq) = [/COLOR][COLOR white]333[/COLOR]" type="lsep" visible="eq(-6,4)" subsetting="true"/>
+        <setting label="[COLOR grey2]Core frequency (core_freq) = [/COLOR][COLOR white]450[/COLOR]" type="lsep" visible="eq(-7,3)" subsetting="true"/>
+        <setting label="[COLOR grey2]Core frequency (core_freq) = [/COLOR][COLOR white]500[/COLOR]" type="lsep" visible="eq(-8,2)" subsetting="true"/>
+        
+        <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]400[/COLOR]" type="lsep" visible="eq(-9,5)" subsetting="true"/>
+        <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]450[/COLOR]" type="lsep" visible="eq(-10,4)" subsetting="true"/>
+        <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]450[/COLOR]" type="lsep" visible="eq(-11,3)" subsetting="true"/>
+        <setting label="[COLOR grey2]SDRAM frequency (sdram_freq) = [/COLOR][COLOR white]500[/COLOR]" type="lsep" visible="eq(-12,2)" subsetting="true"/>
+        
+        <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]0[/COLOR]" type="lsep" visible="eq(-13,5)" subsetting="true"/>
+        <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]2[/COLOR]" type="lsep" visible="eq(-14,4)" subsetting="true"/>
+        <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]6[/COLOR]" type="lsep" visible="eq(-15,3)" subsetting="true"/>
+        <setting label="[COLOR grey2]ARM voltage adjustment (over_voltage) = [/COLOR][COLOR white]6[/COLOR]" type="lsep" visible="eq(-16,2)" subsetting="true"/>
+        
+        <setting label="[COLOR grey2]SDRAM voltage adjustment (over_voltage_sdram) = [/COLOR][COLOR white]0[/COLOR]" type="lsep" visible="eq(-17,5)" subsetting="true"/>
+        <setting label="[COLOR grey2]SDRAM voltage adjustment (over_voltage_sdram) = [/COLOR][COLOR white]0[/COLOR]" type="lsep" visible="eq(-18,4)" subsetting="true"/>
+        <setting label="[COLOR grey2]SDRAM voltage adjustment (over_voltage_sdram) = [/COLOR][COLOR white]0[/COLOR]" type="lsep" visible="eq(-19,3)" subsetting="true"/>
+        <setting label="[COLOR grey2]SDRAM voltage adjustment (over_voltage_sdram) = [/COLOR][COLOR white]0[/COLOR]" type="lsep" visible="eq(-20,2)" subsetting="true"/> 
+              
+        <setting label="ARM frequency (arm_freq)" type="slider" id="arm_freq" subsetting="true" visible="eq(-21,0)" default="700" range="700,10,1200" option="int"/>
+        <setting label="Core frequency (core_freq)" type="slider" id="core_freq" subsetting="true" visible="eq(-22,0)" default="250" range="250,10,500" option="int"/>
+        <setting label="SDRAM frequency (sdram_freq)" type="slider" id="sdram_freq" subsetting="true" visible="eq(-23,0)" default="400" range="400,10,600" option="int"/>
+        <setting label="ARM voltage adjustment (over_voltage)" type="slider" id="over_voltage" subsetting="true" visible="eq(-24,0)" default="0" range="0,1,8" option="int"/>
+        <setting label="SDRAM voltage adjustment (over_voltage_sdram)" type="slider" id="over_voltage_sdram" subsetting="true" visible="eq(-25,0)" default="0" range="0,1,8" option="int"/>
+        
         <setting label="Disable dynamic overclock (force_turbo)" type="bool" id="force_turbo"/>
         <setting label="Initial time to disable dynamic overclock (initial_turbo)" type="slider" id="initial_turbo" enable="eq(-1,false)" range="0,10,60" option="int"/>
     </category>
@@ -16,9 +43,11 @@
         <setting label="Mode (hdmi_drive)" type="enum" id="hdmi_drive" values="-|DVI|HDMI" default="2"/>
         <setting label="Force all audio formats (hdmi_force_edid_audio)" type="bool" id="hdmi_force_edid_audio"/>
         <setting label="Colour space/range (hdmi_pixel_encoding)" type="enum" id="hdmi_pixel_encoding" values="default|RGB limited|RGB full|YCbCr limited|YCbCr full" default="0"/>
+        
         <setting label="Composite" type="lsep"/>
         <setting label="Mode (sdtv_mode)" type="enum" id="sdtv_mode" values="NTSC|Japan|PAL|Brazil" default="0"/>
         <setting label="Aspect (sdtv_aspect)" type="enum" id="sdtv_aspect" values="-|4:3|14:9|16:9" default="1"/>
+        
         <setting label="Overscan" type="lsep"/>
         <setting label="Disable (disable_overscan)" type="bool" id="disable_overscan"/>
         <setting label="Scaling (overscan_scale)" type="bool" id="overscan_scale"/>
@@ -30,9 +59,11 @@
     <category label="Misc">
         <setting label="Memory" type="lsep"/>
         <setting label="GPU memory in MB (gpu_mem)" type="slider" id="gpu_mem" default="128" range="16,16,448" option="int"/>
+        
         <setting label="License keys" type="lsep"/>
         <setting label="MPEG-2 (decode_MPG2)" type="text" id="decode_MPG2"/>
         <setting label="VC-1 (decode_WVC1)" type="text" id="decode_WVC1"/>
+        
         <setting label="Other" type="lsep"/>
         <setting label="Disable CEC (hdmi_ignore_cec)" type="bool" id="hdmi_ignore_cec"/>
         <setting label="Disable rainbow boot splash (disable_splash)" type="bool" id="disable_splash"/>
