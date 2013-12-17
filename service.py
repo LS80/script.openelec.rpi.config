@@ -55,8 +55,7 @@ class Main(object):
         if overclock_preset == 'Custom':
             for prop in utils.OVERCLOCK_PRESET_PROPERTIES:
                 config[prop] = utils.get_property_setting(prop)
-
-        elif overclock_preset != 'None':
+        elif overclock_preset in utils.OVERCLOCK_PRESETS:
             config = OrderedDict(zip(utils.OVERCLOCK_PRESET_PROPERTIES,
                                      utils.OVERCLOCK_PRESETS[overclock_preset]))
 
@@ -75,7 +74,7 @@ class Main(object):
                 utils.log("Enabling dynamic overclock") 
                 config['force_turbo'] = 0
             else:
-                utils.log("Warranty warning was ignored")        
+                utils.log("Warranty warning was ignored")
 
         reboot_needed = False
         if os.path.isfile(utils.CONFIG_PATH):
@@ -83,24 +82,30 @@ class Main(object):
                 config_txt = f.read()
                 
             for prop, value in config.iteritems():
+                utils.log("==== {} ====".format(prop))
                 config_property_re = re.compile(utils.CONFIG_SUB_RE_STR.format(prop), re.MULTILINE)
                 match = config_property_re.search(config_txt)
                 if match:
                     comment = bool(match.group(1))
                     old_value = match.group(3)
-                    if comment or str(value) != old_value:
-                        utils.log("Setting {} to {}".format(prop, value))
-                        config_txt = config_property_re.sub(partial(utils.replace, value), config_txt)
+                    if value is None:
+                        utils.log("  Commenting out")
+                        config_txt = config_property_re.sub(utils.comment_out, config_txt)
+                        reboot_needed = True
+                    elif comment or str(value) != old_value:
+                        utils.log("  Setting to {}".format(value))
+                        config_txt = config_property_re.sub(partial(utils.replace_value, value), config_txt)
                         reboot_needed = True
                     else:
-                        utils.log("{} setting unchanged".format(prop))
-                else:
-                    utils.log("Appending {}={} to {}".format(prop, value, utils.CONFIG_PATH))
+                        utils.log("  Unchanged")
+                elif value is not None:
+                    utils.log("  Appending {}={}".format(prop, value))
                     config_txt += utils.property_value_str(prop, value) + '\n'
                     reboot_needed = True
         else:
             utils.log("A new {} will be created".format(utils.CONFIG_PATH))
             config_txt = utils.add_property_values(config)
+            reboot_needed = True
 
         with utils.remount():
             try:

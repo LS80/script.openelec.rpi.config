@@ -33,10 +33,11 @@ OVERCLOCK_PRESET_PROPERTIES = ('arm_freq',
                                'over_voltage',
                                'over_voltage_sdram')
 
-OVERCLOCK_PRESETS = {'Modest': ( 800, 300, 400, 0, 0),
-                     'Medium': ( 900, 333, 450, 2, 0),
-                     'High'  : ( 950, 450, 450, 6, 0),
-                     'Turbo' : (1000, 500, 500, 6, 0)}
+OVERCLOCK_PRESETS = {'Disabled': (None, None, None, None, None),
+                     'Modest'  : ( 800,  300,  400,    0,    0),
+                     'Medium'  : ( 900,  333,  450,    2,    0),
+                     'High'    : ( 950,  450,  450,    6,    0),
+                     'Turbo'   : (1000,  500,  500,    6,    0)}
 
 OTHER_PROPERTIES = ('force_turbo',
                     'initial_turbo',
@@ -158,13 +159,20 @@ def remount():
 def property_value_str(prop, value):
     return "  {}={}".format(prop, value)
 
+def commented_property_value_str(prop, value):
+    return "# {}={}".format(prop, value)
+
 def add_property_values(d, s=""):
     for prop, value in d.iteritems():
-        s += property_value_str(prop, value) + '\n'
+        if value is not None:
+            s += property_value_str(prop, value) + '\n'
     return s
 
-def replace(value, m):
+def replace_value(value, m):
     return property_value_str(m.group(2), value)
+
+def comment_out(m):
+    return commented_property_value_str(m.group(2), m.group(3))
 
 def write_config(s):
     # write to temporary file in same directory and then rename
