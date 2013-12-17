@@ -155,6 +155,14 @@ def remount():
         yield
     finally:
         mount_readonly()
+      
+@contextmanager
+def busy():  
+    xbmc.executebuiltin("ActivateWindow(busydialog)")
+    try:
+        yield
+    finally:
+        xbmc.executebuiltin("Dialog.Close(busydialog)")
 
 def property_value_str(prop, value):
     return "  {}={}".format(prop, value)

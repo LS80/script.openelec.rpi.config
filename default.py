@@ -23,10 +23,11 @@ import utils
 
 utils.log("Started script")
 if utils.get_arch() == 'RPi.arm':
-    try:
-        utils.maybe_init_settings()
-    except IOError as e:
-        utils.read_error(utils.CONFIG_PATH, str(e))
+    with utils.busy():
+        try:
+            utils.maybe_init_settings()
+        except IOError as e:
+            utils.read_error(utils.CONFIG_PATH, str(e))
     utils.log("Opening settings")
     xbmcaddon.Addon().openSettings()
 else:
