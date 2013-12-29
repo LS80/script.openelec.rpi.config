@@ -14,7 +14,9 @@
     <summary>Unofficial Raspberry Pi configuration add-on for OpenELEC</summary>
     <description>This XBMC add-on for OpenELEC allows Raspberry Pi settings such as overclocking to be configured without having to manually edit /flash/config.txt.</description>
     <disclaimer>This add-on has the potential to void the warranty of your Raspberry Pi. Use at your own risk!</disclaimer>
-    <forum>http://openelec.tv/forum/</forum>
-    <website>http://nothing.yet</website>
+    <forum>http://openelec.tv/forum/124-raspberry-pi/68533</forum>
+    <website>http://ls80.github.io/script.openelec.rpi.config</website>
+    <source>http://github.com/LS80/script.openelec.rpi.config</source>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
   </extension>
 </addon>
