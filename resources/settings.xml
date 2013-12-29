@@ -51,11 +51,11 @@
         <setting label="Overscan" type="lsep"/>
         <setting label="Disable (disable_overscan)" type="bool" id="disable_overscan"/>
         <setting label="Scaling (overscan_scale)" type="bool" id="overscan_scale"/>
-        <setting label="Left overscan in pixels (overscan_left)" type="number" id="overscan_left"/>
-        <setting label="Right overscan in pixels (overscan_right)" type="number" id="overscan_right"/>
-        <setting label="Top overscan in pixels (overscan_top)" type="number" id="overscan_top"/>
-        <setting label="Bottom overscan in pixels (overscan_bottom)" type="number" id="overscan_bottom"/>
-    </category>  
+        <setting label="Left overscan in pixels (overscan_left)" type="slider" id="overscan_left" range="-60,1,60" option="int"/>
+        <setting label="Right overscan in pixels (overscan_right)" type="slider" id="overscan_right" range="-60,1,60" option="int"/>
+        <setting label="Top overscan in pixels (overscan_top)" type="slider" id="overscan_top" range="-60,1,60" option="int"/>
+        <setting label="Bottom overscan in pixels (overscan_bottom)" type="slider" id="overscan_bottom" range="-60,1,60" option="int"/>
+    </category>
     <category label="Misc">
         <setting label="Memory" type="lsep"/>
         <setting label="GPU memory in MB (gpu_mem)" type="slider" id="gpu_mem" default="128" range="16,16,448" option="int"/>
