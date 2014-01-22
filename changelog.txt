@@ -1,3 +1,6 @@
+0.14.0
+ - Added the "Force Composite" setting (hdmi_ignore_hotplug).
+
 0.13.0
  - Changed overscan settings from numbers to sliders (-60 to +60)
    so that negative values can be set.
