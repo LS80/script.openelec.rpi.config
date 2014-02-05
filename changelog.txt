@@ -1,3 +1,6 @@
+0.15.0
+ - Added hdmi_ignore_cec_init to disable initial active source message.
+
 0.14.0
  - Added the "Force Composite" setting (hdmi_ignore_hotplug).
 

@@ -67,6 +67,7 @@
         
         <setting label="Other" type="lsep"/>
         <setting label="Disable CEC (hdmi_ignore_cec)" type="bool" id="hdmi_ignore_cec"/>
+        <setting label="Disable CEC initial active source (hdmi_ignore_cec_init)" type="bool" id="hdmi_ignore_cec_init"/>
         <setting label="Disable rainbow boot splash (disable_splash)" type="bool" id="disable_splash"/>
     </category>
     <category label="Settings">

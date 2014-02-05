@@ -58,6 +58,7 @@ OTHER_PROPERTIES = ('force_turbo',
                     'decode_MPG2',
                     'decode_WVC1',
                     'hdmi_ignore_cec',
+                    'hdmi_ignore_cec_init',
                     'disable_splash')
 
 CONFIG_PROPERTIES = OVERCLOCK_PRESET_PROPERTIES + OTHER_PROPERTIES
