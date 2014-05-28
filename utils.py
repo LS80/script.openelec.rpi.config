@@ -41,7 +41,8 @@ OVERCLOCK_PRESETS = {'Disabled': (None, None, None, None, None),
 
 OTHER_PROPERTIES = ('force_turbo',
                     'initial_turbo',
-                    'gpu_mem',
+                    'gpu_mem_256',
+                    'gpu_mem_512',
                     'hdmi_force_hotplug',
                     'hdmi_drive',
                     'hdmi_force_edid_audio',
@@ -112,6 +113,11 @@ def get_property_setting(name):
     return value
 
 def maybe_init_settings():
+    max_ram = get_maxram()
+
+    if max_ram != -1:
+        set_property_setting('max_ram', max_ram)
+
     if os.path.isfile(CONFIG_PATH):
         log("Initialising settings from {}".format(CONFIG_PATH))
         with open(CONFIG_PATH, 'r') as f:
@@ -141,6 +147,24 @@ def get_arch():
         arch = 'RPi.arm'
     
     return arch
+
+# code from http://www.raspberrypi.org/forums/viewtopic.php?f=32&t=18133
+def get_revision():
+   with open('/proc/cpuinfo') as lines:
+      for line in lines:
+         if line.startswith('Revision'):
+            return int(line[line.index(':') + 1:], 16) & 0xFFFF
+   return -1
+
+# Revision to max ram mapping according to http://elinux.org/RPi_HardwareHistory
+def get_maxram():
+   revision = get_revision()
+   if revision in (2, 9):
+      return 256
+   elif revision in (13, 15):
+      return 512
+   else:
+      return -1
 
 def mount_readwrite():
     log("Remounting /flash for read/write")
