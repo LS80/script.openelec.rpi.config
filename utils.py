@@ -154,17 +154,17 @@ def get_revision():
       for line in lines:
          if line.startswith('Revision'):
             return int(line[line.index(':') + 1:], 16) & 0xFFFF
-   return -1
+   return None
 
 # Revision to max ram mapping according to http://elinux.org/RPi_HardwareHistory
 def get_maxram():
    revision = get_revision()
-   if revision in (2, 9):
+   if revision in xrange(2, 9):
       return 256
-   elif revision in (13, 15):
+   elif revision in xrange(13, 15):
       return 512
    else:
-      return -1
+      return None
 
 def mount_readwrite():
     log("Remounting /flash for read/write")

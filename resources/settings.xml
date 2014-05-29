@@ -60,8 +60,9 @@
     <category label="Misc">
         <setting label="Memory" type="lsep"/>
         <setting label="Ram size of RPi" type="number" id="max_ram" visible="false"/>
-        <setting label="GPU memory in MB (gpu_mem)" type="slider" id="gpu_mem_256" default="100" range="64,4,192" option="int" visible="eq(-1,256)"/>
-        <setting label="GPU memory in MB (gpu_mem)" type="slider" id="gpu_mem_512" default="128" range="64,16,448" option="int" visible="eq(-2,512)"/>
+        <setting label="GPU memory in MB (gpu_mem)" type="number" id="gpu_mem" option="int" visible="eq(-1,0)"/>
+        <setting label="GPU memory in MB (gpu_mem)" type="slider" id="gpu_mem_256" default="100" range="64,4,192" option="int" visible="eq(-2,256)"/>
+        <setting label="GPU memory in MB (gpu_mem)" type="slider" id="gpu_mem_512" default="128" range="64,16,448" option="int" visible="eq(-3,512)"/>
 
         <setting label="License keys" type="lsep"/>
         <setting label="MPEG-2 (decode_MPG2)" type="text" id="decode_MPG2"/>
