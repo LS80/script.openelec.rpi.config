@@ -119,6 +119,7 @@ def maybe_init_settings():
 
     if max_ram:
         set_property_setting('max_ram', str(max_ram))
+        set_property_setting('max_ram_visible', 'false')
     else:
         # Unkown revision
         if not get_property_setting('max_ram_visible'):
@@ -165,7 +166,6 @@ def get_revision():
 
 # Revision to max ram mapping according to http://elinux.org/RPi_HardwareHistory
 def get_maxram():
-    return None
     revision = get_revision()
     if revision in xrange(2, 9):
         return 256
