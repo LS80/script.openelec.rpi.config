@@ -167,9 +167,9 @@ def get_revision():
 # Revision to max ram mapping according to http://elinux.org/RPi_HardwareHistory
 def get_maxram():
     revision = get_revision()
-    if revision in xrange(2, 9):
+    if revision in xrange(2, 10): # rev. 2-9!
         return 256
-    elif revision in xrange(13, 15):
+    elif revision in xrange(13, 16): #rev. 13-15!
         return 512
     else:
         return None
