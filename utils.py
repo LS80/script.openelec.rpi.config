@@ -41,7 +41,6 @@ OVERCLOCK_PRESETS = {'Disabled': (None, None, None, None, None),
 
 OTHER_PROPERTIES = ('force_turbo',
                     'initial_turbo',
-                    'gpu_mem',
                     'gpu_mem_256',
                     'gpu_mem_512',
                     'hdmi_force_hotplug',
@@ -114,17 +113,9 @@ def get_property_setting(name):
     return value
 
 def maybe_init_settings():
-    # try to get ram size from revision
-    max_ram = get_maxram()
-
-    if max_ram:
-        set_property_setting('max_ram', str(max_ram))
-        set_property_setting('max_ram_visible', 'false')
-    else:
-        # Unkown revision
-        if not get_property_setting('max_ram_visible'):
-            set_property_setting('max_ram_visible', 'true')
-            set_property_setting('max_ram', '0')
+    # set revision number setting
+    revision = get_revision()
+    set_property_setting('revision', str(revision))
 
     if os.path.isfile(CONFIG_PATH):
         log("Initialising settings from {}".format(CONFIG_PATH))
@@ -163,16 +154,6 @@ def get_revision():
             if line.startswith('Revision'):
                 return int(line[line.index(':') + 1:], 16) & 0xFFFF
     return None
-
-# Revision to max ram mapping according to http://elinux.org/RPi_HardwareHistory
-def get_maxram():
-    revision = get_revision()
-    if revision in xrange(2, 10): # rev. 2-9!
-        return 256
-    elif revision in xrange(13, 16): #rev. 13-15!
-        return 512
-    else:
-        return None
 
 def mount_readwrite():
     log("Remounting /flash for read/write")
