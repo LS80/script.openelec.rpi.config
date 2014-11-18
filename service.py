@@ -80,7 +80,9 @@ class Main(object):
         if os.path.isfile(utils.CONFIG_PATH):
             with open(utils.CONFIG_PATH, 'r') as f:
                 config_txt = f.read()
-                
+
+            config_txt_new = config_txt
+
             for prop, value in config.iteritems():
                 utils.log("==== {} ====".format(prop))
                 config_property_re = re.compile(utils.CONFIG_SUB_RE_STR.format(prop), re.MULTILINE)
@@ -90,29 +92,28 @@ class Main(object):
                     old_value = match.group(3)
                     if value is None:
                         utils.log("  Commenting out")
-                        config_txt = config_property_re.sub(utils.comment_out, config_txt)
-                        reboot_needed = True
+                        config_txt_new = config_property_re.sub(utils.comment_out, config_txt_new)
                     elif comment or str(value) != old_value:
                         utils.log("  Setting to {}".format(value))
-                        config_txt = config_property_re.sub(partial(utils.replace_value, value), config_txt)
-                        reboot_needed = True
+                        config_txt_new = config_property_re.sub(partial(utils.replace_value, value),
+                                                                config_txt_new)
                     else:
-                        utils.log("  Unchanged")
+                        utils.log("  Unchanged ({})".format(value))
                 elif value is not None:
                     utils.log("  Appending {}={}".format(prop, value))
-                    config_txt += utils.property_value_str(prop, value) + '\n'
-                    reboot_needed = True
+                    config_txt_new += utils.property_value_str(prop, value) + '\n'
         else:
             utils.log("A new {} will be created".format(utils.CONFIG_PATH))
-            config_txt = utils.add_property_values(config)
-            reboot_needed = True
+            config_txt_new = utils.add_property_values(config)
 
-        with utils.remount():
-            try:
-                utils.write_config(config_txt)
-            except (OSError, IOError) as e:
-                reboot_needed = False
-                utils.write_error(utils.CONFIG_PATH, str(e))
+        if config_txt_new != config_txt:
+            reboot_needed = True
+            with utils.remount():
+                try:
+                    utils.write_config(config_txt_new)
+                except (OSError, IOError) as e:
+                    reboot_needed = False
+                    utils.write_error(utils.CONFIG_PATH, str(e))
         
         if reboot_needed:
             if utils.restart_countdown("Ready to reboot to apply changes in config.txt"):
