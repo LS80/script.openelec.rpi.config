@@ -16,6 +16,7 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################################
+from __future__ import division
 
 import os
 import sys
@@ -202,8 +203,8 @@ def restart_countdown(message, timeout=10):
     restart = True
     seconds = timeout
     while seconds >= 0:
-        progress.update(int((timeout - seconds) / timeout * 100),
-                        message,
+        percent = int((timeout - seconds) / timeout * 100)
+        progress.update(percent, message,
                         "Rebooting{}{}...".format((seconds > 0) * " in {} second".format(seconds),
                                                   "s" * (seconds > 1)))
         xbmc.sleep(1000)
