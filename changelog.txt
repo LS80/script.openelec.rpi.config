@@ -1,3 +1,7 @@
+0.16.0
+ - Added the Model B+ setting max_usb_current to output 1.2A through the USB ports.
+ - Fixed the reboot countdown progress bar.
+
 0.15.0
  - Added hdmi_ignore_cec_init to disable initial active source message.
 
