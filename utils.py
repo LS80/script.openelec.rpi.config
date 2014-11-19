@@ -60,7 +60,8 @@ OTHER_PROPERTIES = ('force_turbo',
                     'decode_WVC1',
                     'hdmi_ignore_cec',
                     'hdmi_ignore_cec_init',
-                    'disable_splash')
+                    'disable_splash',
+                    'max_usb_current')
 
 CONFIG_PROPERTIES = OVERCLOCK_PRESET_PROPERTIES + OTHER_PROPERTIES
     
@@ -94,7 +95,7 @@ def write_error(path, msg):
                         "Unable to write {}.".format(path))
 
 def set_property_setting(name, value):
-    __addon__.setSetting(name, value)
+    __addon__.setSetting(name, str(value))
 
 def get_setting(name):
     return __addon__.getSetting(name)
@@ -142,6 +143,14 @@ def get_arch():
         arch = 'RPi.arm'
     
     return arch
+
+def get_revision():
+    with open('/proc/cpuinfo') as cpuinfo:
+        m = re.search('^Revision\t: ([0-9a-f]+)', cpuinfo.read(), re.M)
+        if m:
+            return int(m.group(1), 16) & 0xffff # last 4 hex digits
+        else:
+            return None
 
 def mount_readwrite():
     log("Remounting /flash for read/write")

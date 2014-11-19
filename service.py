@@ -36,7 +36,13 @@ if ARCH != 'RPi.arm':
 class Main(object):
     def __init__(self):
         utils.log("Started service")
-        try:          
+
+        revision = utils.get_revision()
+        utils.log("Board revision: {}".format(revision))
+        if revision is not None:
+            utils.set_property_setting('revision', revision)
+
+        try:
             utils.maybe_init_settings()
         except IOError:
             utils.log_exception()
@@ -75,6 +81,13 @@ class Main(object):
                 config['force_turbo'] = 0
             else:
                 utils.log("Warranty warning was ignored")
+
+        if 'max_usb_current' in config and config['max_usb_current'] == 1:
+            if not xbmcgui.Dialog().yesno("OpenELEC RPi Config WARNING!",
+                                          "To output 1.2A from the USB ports",
+                                          "you will need to use a good 2A power supply.",
+                                          "Are you sure you want to set max_usb_current?"):
+                config['max_usb_current'] = 0
 
         reboot_needed = False
         if os.path.isfile(utils.CONFIG_PATH):
