@@ -93,7 +93,7 @@ class Main(object):
                                           "Are you sure you want to set max_usb_current?"):
                 config['max_usb_current'] = 0
 
-        reboot_needed = False
+        updated = False
         if os.path.isfile(utils.CONFIG_PATH):
             with open(utils.CONFIG_PATH, 'r') as f:
                 config_txt = f.read()
@@ -110,20 +110,25 @@ class Main(object):
                     if value is None:
                         utils.log("  Commenting out")
                         config_txt_new = config_property_re.sub(utils.comment_out, config_txt_new)
+                        updated = True
                     elif comment or str(value) != old_value:
                         utils.log("  Setting to {}".format(value))
                         config_txt_new = config_property_re.sub(partial(utils.replace_value, value),
                                                                 config_txt_new)
+                        updated = True
                     else:
                         utils.log("  Unchanged ({})".format(value))
                 elif value is not None:
                     utils.log("  Appending {}={}".format(prop, value))
                     config_txt_new += utils.property_value_str(prop, value) + '\n'
+                    updated = True
         else:
             utils.log("A new {} will be created".format(utils.CONFIG_PATH))
             config_txt_new = utils.add_property_values(config)
+            updated = True
 
-        if config_txt_new != config_txt:
+        reboot_needed = False
+        if updated:
             reboot_needed = True
             with utils.remount():
                 try:
