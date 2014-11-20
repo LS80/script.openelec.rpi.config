@@ -1,3 +1,7 @@
+0.17.0
+ - Handle gpu_mem for 256MB boards
+ - Fixed a bug when there is no existing config.txt
+
 0.16.0
  - Added the Model B+ setting max_usb_current to output 1.2A through the USB ports.
  - Fixed the reboot countdown progress bar.
