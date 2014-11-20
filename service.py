@@ -74,7 +74,8 @@ class Main(object):
             if value is not None:
                 config[prop] = value
                 
-        if config['force_turbo'] == 1 and 'over_voltage' in config and config['over_voltage'] > 0:
+        if ('force_turbo' in config and config['force_turbo'] == 1 and
+            'over_voltage' in config and config['over_voltage'] > 0):
             if not xbmcgui.Dialog().yesno("OpenELEC RPi Config WARNING!!",
                                           "Overvolting with dynamic overclock disabled",
                                           "will void your warranty!!",
