@@ -42,7 +42,8 @@ OVERCLOCK_PRESETS = {'Disabled': (None, None, None, None, None),
 
 OTHER_PROPERTIES = ('force_turbo',
                     'initial_turbo',
-                    'gpu_mem',
+                    'gpu_mem_256',
+                    'gpu_mem_512',
                     'hdmi_force_hotplug',
                     'hdmi_drive',
                     'hdmi_force_edid_audio',
@@ -113,6 +114,13 @@ def get_property_setting(name):
             value = setting.strip()
     return value
 
+def get_config_value(config_txt, prop):
+    match = re.search(CONFIG_INIT_RE_STR.format(prop), config_txt, re.MULTILINE)
+    if match:
+        return match.group(2)
+    else:
+        return None
+
 def maybe_init_settings():
     if os.path.isfile(CONFIG_PATH):
         log("Initialising settings from {}".format(CONFIG_PATH))
@@ -120,15 +128,23 @@ def maybe_init_settings():
             config_txt = f.read()
 
         for prop in CONFIG_PROPERTIES:
-            match = re.search(CONFIG_INIT_RE_STR.format(prop), config_txt, re.MULTILINE)
-            if match:
+            value = get_config_value(config_txt, prop)
+            if value is not None:
                 setting_value = get_property_setting(prop)
-                value = match.group(2)
                 if value != str(setting_value):
                     set_property_setting(prop, value)
                 log("{}={}".format(prop, value))
             else:
                 log("{} not set".format(prop))
+
+        # if only gpu_mem is set then use that
+        gpu_mem = get_config_value(config_txt, 'gpu_mem')
+        if gpu_mem is not None:
+            for prop in ('gpu_mem_256', 'gpu_mem_512'):
+                value = get_config_value(config_txt, prop)
+                if value is None:
+                    log("{}={}={}".format(prop, 'gpu_mem', gpu_mem))
+                    set_property_setting(prop, gpu_mem)
     else:
         log("{} not found".format(CONFIG_PATH))
 
@@ -151,6 +167,14 @@ def get_revision():
             return int(m.group(1), 16) & 0xffff # last 4 hex digits
         else:
             return None
+
+def get_max_ram():
+   r = re.compile('[a-z]+=(\d+)M')
+   mb=0
+   for mem in ("arm", "gpu"):
+       output = subprocess.check_output(["vcgencmd", "get_mem", mem]).decode()
+       mb += int(r.match(output).group(1))
+   return mb
 
 def mount_readwrite():
     log("Remounting /flash for read/write")

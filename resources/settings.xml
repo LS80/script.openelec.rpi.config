@@ -59,9 +59,11 @@
     </category>
     <category label="Misc">
         <setting label="Board revision" type="number" id="revision" default="0" visible="false"/>
+        <setting label="RAM size" type="number" id="max_ram" default="512" visible="false"/>
         
         <setting label="Memory" type="lsep"/>
-        <setting label="GPU memory in MB (gpu_mem)" type="slider" id="gpu_mem" default="128" range="16,16,448" option="int"/>
+        <setting label="GPU memory in MB (gpu_mem_512)" type="slider" id="gpu_mem_512" default="64" range="16,16,448" option="int" visible="eq(-2,512)"/>
+        <setting label="GPU memory in MB (gpu_mem_256)" type="slider" id="gpu_mem_256" default="64" range="16,8,192" option="int" visible="eq(-3,256)"/>
         
         <setting label="License keys" type="lsep"/>
         <setting label="MPEG-2 (decode_MPG2)" type="text" id="decode_MPG2"/>
@@ -71,7 +73,7 @@
         <setting label="Disable CEC (hdmi_ignore_cec)" type="bool" id="hdmi_ignore_cec"/>
         <setting label="Disable CEC initial active source (hdmi_ignore_cec_init)" type="bool" id="hdmi_ignore_cec_init"/>
         <setting label="Disable rainbow boot splash (disable_splash)" type="bool" id="disable_splash"/>
-        <setting label="Output the maximum 1.2A from USB ports (max_usb_current)" type="bool" id="max_usb_current" visible="eq(-10,16)"/>
+        <setting label="Output the maximum 1.2A from USB ports (max_usb_current)" type="bool" id="max_usb_current" visible="eq(-12,16)"/>
     </category>
     <category label="Settings">
         <setting label="Debug mode" type="bool" id="debug" default="false"/>

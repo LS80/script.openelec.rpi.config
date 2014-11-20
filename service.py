@@ -42,6 +42,10 @@ class Main(object):
         if revision is not None:
             utils.set_property_setting('revision', revision)
 
+        max_ram = utils.get_max_ram()
+        utils.log("RAM size: {}MB".format(max_ram))
+        utils.set_property_setting('max_ram', max_ram)
+
         try:
             utils.maybe_init_settings()
         except IOError:
