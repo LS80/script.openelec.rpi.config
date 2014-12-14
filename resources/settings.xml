@@ -28,9 +28,9 @@
         <setting label="[COLOR grey2]SDRAM voltage adjustment (over_voltage_sdram) = [/COLOR][COLOR white]0[/COLOR]" type="lsep" visible="eq(-19,3)" subsetting="true"/>
         <setting label="[COLOR grey2]SDRAM voltage adjustment (over_voltage_sdram) = [/COLOR][COLOR white]0[/COLOR]" type="lsep" visible="eq(-20,2)" subsetting="true"/> 
               
-        <setting label="ARM frequency (arm_freq)" type="slider" id="arm_freq" subsetting="true" visible="eq(-21,0)" default="700" range="700,10,1200" option="int"/>
-        <setting label="Core frequency (core_freq)" type="slider" id="core_freq" subsetting="true" visible="eq(-22,0)" default="250" range="250,10,500" option="int"/>
-        <setting label="SDRAM frequency (sdram_freq)" type="slider" id="sdram_freq" subsetting="true" visible="eq(-23,0)" default="400" range="400,10,600" option="int"/>
+        <setting label="ARM frequency (arm_freq)" type="slider" id="arm_freq" subsetting="true" visible="eq(-21,0)" default="700" range="700,10,1500" option="int"/>
+        <setting label="Core frequency (core_freq)" type="slider" id="core_freq" subsetting="true" visible="eq(-22,0)" default="250" range="250,10,750" option="int"/>
+        <setting label="SDRAM frequency (sdram_freq)" type="slider" id="sdram_freq" subsetting="true" visible="eq(-23,0)" default="400" range="400,10,750" option="int"/>
         <setting label="ARM voltage adjustment (over_voltage)" type="slider" id="over_voltage" subsetting="true" visible="eq(-24,0)" default="0" range="0,1,8" option="int"/>
         <setting label="SDRAM voltage adjustment (over_voltage_sdram)" type="slider" id="over_voltage_sdram" subsetting="true" visible="eq(-25,0)" default="0" range="0,1,8" option="int"/>
         
