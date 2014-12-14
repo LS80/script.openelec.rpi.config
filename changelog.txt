@@ -1,3 +1,6 @@
+0.18.0
+ - Increased the maximum values for arm_freq, core_freq and sdram_freq.
+
 0.17.0
  - Handle gpu_mem for 256MB boards
  - Fixed a bug when there is no existing config.txt
