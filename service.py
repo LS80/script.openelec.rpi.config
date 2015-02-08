@@ -46,6 +46,11 @@ class Main(object):
         utils.log("RAM size: {}MB".format(max_ram))
         utils.set_property_setting('max_ram', max_ram)
 
+        board_type = utils.get_type()
+        utils.log("Board type: {}".format(board_type))
+        if board_type is not None:
+            utils.set_property_setting('type', board_type)
+
         try:
             utils.maybe_init_settings()
         except IOError:

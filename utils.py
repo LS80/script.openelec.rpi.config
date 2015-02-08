@@ -183,6 +183,17 @@ def get_revision():
     else:
         return None
 
+def get_type():
+    rev = read_revision()
+    if rev:
+        scheme = get_scheme(rev)
+        if scheme == 0:
+            return None
+        else:
+            return (rev & 0xFF0) >> 4
+    else:
+        return None
+
 def get_max_ram():
     rev = read_revision()
     if rev:

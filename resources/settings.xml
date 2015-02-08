@@ -59,6 +59,7 @@
     </category>
     <category label="Misc">
         <setting label="Board revision" type="number" id="revision" default="0" visible="false"/>
+        <setting label="Board type" type="number" id="type" default="0" visible="false"/>
         <setting label="RAM size" type="number" id="max_ram" default="512" visible="false"/>
         
         <setting label="Memory" type="lsep"/>
@@ -74,7 +75,7 @@
         <setting label="Disable CEC (hdmi_ignore_cec)" type="bool" id="hdmi_ignore_cec"/>
         <setting label="Disable CEC initial active source (hdmi_ignore_cec_init)" type="bool" id="hdmi_ignore_cec_init"/>
         <setting label="Disable rainbow boot splash (disable_splash)" type="bool" id="disable_splash"/>
-        <setting label="Output the maximum 1.2A from USB ports (max_usb_current)" type="bool" id="max_usb_current" visible="eq(-12,16)"/>
+        <setting label="Output the maximum 1.2A from USB ports (max_usb_current)" type="bool" id="max_usb_current" visible="eq(-14,16)|eq(-13,2)|eq(-13,3)|eq(-13,4)"/>
     </category>
     <category label="Settings">
         <setting label="Debug mode" type="bool" id="debug" default="false"/>
