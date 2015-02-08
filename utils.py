@@ -44,6 +44,7 @@ OTHER_PROPERTIES = ('force_turbo',
                     'initial_turbo',
                     'gpu_mem_256',
                     'gpu_mem_512',
+                    'gpu_mem_1024',
                     'hdmi_force_hotplug',
                     'hdmi_drive',
                     'hdmi_force_edid_audio',
@@ -160,21 +161,40 @@ def get_arch():
     
     return arch
 
-def get_revision():
+def read_revision():
     with open('/proc/cpuinfo') as cpuinfo:
         m = re.search('^Revision\t: ([0-9a-f]+)', cpuinfo.read(), re.M)
         if m:
-            return int(m.group(1), 16) & 0xffff # last 4 hex digits
+            return int(m.group(1), 16)
         else:
             return None
 
+def get_scheme(revision):
+    return (revision & 0x800000) >> 23
+
+def get_revision():
+    rev = read_revision()
+    if rev:
+        scheme = get_scheme(rev)
+        if scheme == 0:
+            return rev & 0xFFFF # last 4 hex digits
+        else:
+            return None
+    else:
+        return None
+
 def get_max_ram():
-   r = re.compile('[a-z]+=(\d+)M')
-   mb=0
-   for mem in ("arm", "gpu"):
-       output = subprocess.check_output(["vcgencmd", "get_mem", mem]).decode()
-       mb += int(r.match(output).group(1))
-   return mb
+    rev = read_revision()
+    if rev:
+        if get_scheme(rev) == 1:
+            return 2 ** (((rev & 0x700000) >> 20) + 8)
+
+    r = re.compile('[a-z]+=(\d+)M')
+    mb=0
+    for mem in ("arm", "gpu"):
+        output = subprocess.check_output(["vcgencmd", "get_mem", mem]).decode()
+        mb += int(r.match(output).group(1))
+    return mb
 
 def mount_readwrite():
     log("Remounting /flash for read/write")

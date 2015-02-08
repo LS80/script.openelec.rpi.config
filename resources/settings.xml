@@ -62,8 +62,9 @@
         <setting label="RAM size" type="number" id="max_ram" default="512" visible="false"/>
         
         <setting label="Memory" type="lsep"/>
-        <setting label="GPU memory in MB (gpu_mem_512)" type="slider" id="gpu_mem_512" default="64" range="16,16,448" option="int" visible="eq(-2,512)"/>
-        <setting label="GPU memory in MB (gpu_mem_256)" type="slider" id="gpu_mem_256" default="64" range="16,8,192" option="int" visible="eq(-3,256)"/>
+        <setting label="GPU memory in MB (gpu_mem_1024)" type="slider" id="gpu_mem_1024" default="64" range="16,16,448" option="int" visible="eq(-2,1024)"/>
+        <setting label="GPU memory in MB (gpu_mem_512)" type="slider" id="gpu_mem_512" default="64" range="16,16,448" option="int" visible="eq(-3,512)"/>
+        <setting label="GPU memory in MB (gpu_mem_256)" type="slider" id="gpu_mem_256" default="64" range="16,8,192" option="int" visible="eq(-4,256)"/>
         
         <setting label="License keys" type="lsep"/>
         <setting label="MPEG-2 (decode_MPG2)" type="text" id="decode_MPG2"/>
