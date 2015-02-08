@@ -16,13 +16,12 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################################
-
 import xbmcgui, xbmcaddon
 
 import utils
 
 utils.log("Started script")
-if utils.get_arch() == 'RPi.arm':
+if utils.get_arch().startswith('RPi'):
     with utils.busy():
         try:
             utils.maybe_init_settings()

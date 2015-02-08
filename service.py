@@ -29,7 +29,7 @@ import utils
 
 ARCH = utils.get_arch()
 
-if ARCH != 'RPi.arm':
+if not ARCH.startswith('RPi'):
     sys.exit(1)
 
 
