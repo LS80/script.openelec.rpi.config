@@ -75,13 +75,13 @@ CONFIG_RE_STR = r'[ \t]*({})[ \t]*=[ \t]*(\w+)'
 CONFIG_INIT_RE_STR = '^' + CONFIG_RE_STR
 CONFIG_SUB_RE_STR  = '^(#?)' + CONFIG_RE_STR
 
-__addon__ = xbmcaddon.Addon("script.openelec.rpi.config")
+__addon__ = xbmcaddon.Addon()
 
-ADDON_NAME = "OpenELEC RPi Config"
+ADDON_NAME = __addon__.getAddonInfo('name')
 
 def log(txt, level=xbmc.LOGDEBUG):
     if not (__addon__.getSetting('debug') == 'false' and level == xbmc.LOGDEBUG):
-        msg = '{} v{}: {}'.format(__addon__.getAddonInfo('name'),
+        msg = '{} v{}: {}'.format(ADDON_NAME,
                                   __addon__.getAddonInfo('version'), txt)
         xbmc.log(msg, level)
         
