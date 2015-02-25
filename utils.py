@@ -50,6 +50,7 @@ OTHER_PROPERTIES = ('force_turbo',
                     'hdmi_force_edid_audio',
                     'hdmi_pixel_encoding',
                     'hdmi_ignore_hotplug',
+                    'hdmi_edid_file',
                     'sdtv_mode',
                     'sdtv_aspect',
                     'disable_overscan',
@@ -214,6 +215,10 @@ def mount_readwrite():
 def mount_readonly():
     log("Remounting /flash for read only")
     subprocess.call(['mount', '-o', 'ro,remount', '/flash'])
+
+def dump_edid():
+    log("Dumping edid to /flash/edit.dat")
+    subprocess.call(['tvservice', '-d', '/flash/edid.dat'])
 
 @contextmanager
 def remount():

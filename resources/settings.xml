@@ -37,13 +37,17 @@
         <setting label="Disable dynamic overclock (force_turbo)" type="bool" id="force_turbo"/>
         <setting label="Initial time to disable dynamic overclock (initial_turbo)" type="slider" id="initial_turbo" enable="eq(-1,false)" range="0,10,60" option="int"/>
     </category>
-    <category label="Video">
-        <setting label="HDMI" type="lsep"/>
+    <category label="HDMI">
         <setting label="Force HDMI (hdmi_force_hotplug)" type="bool" id="hdmi_force_hotplug"/>
         <setting label="Mode (hdmi_drive)" type="enum" id="hdmi_drive" values="-|DVI|HDMI" default="2"/>
         <setting label="Force all audio formats (hdmi_force_edid_audio)" type="bool" id="hdmi_force_edid_audio"/>
         <setting label="Colour space/range (hdmi_pixel_encoding)" type="enum" id="hdmi_pixel_encoding" values="default|RGB limited|RGB full|YCbCr limited|YCbCr full" default="0"/>
-        
+        <setting label="Read edid data from file (hdmi_edid_file)" type="bool" id="hdmi_edid_file"/>
+        <setting label="Dump edid.dat" type="action" subsetting="true" visible="eq(-1,true)" action="RunScript(script.openelec.rpi.config, dump_edid)"/>
+        <setting label="Disable CEC (hdmi_ignore_cec)" type="bool" id="hdmi_ignore_cec"/>
+        <setting label="Disable CEC initial active source (hdmi_ignore_cec_init)" type="bool" id="hdmi_ignore_cec_init"/>
+    </category>
+    <category label="Video">
         <setting label="Composite" type="lsep"/>
         <setting label="Force Composite (hdmi_ignore_hotplug)" type="bool" id="hdmi_ignore_hotplug"/>
         <setting label="Mode (sdtv_mode)" type="enum" id="sdtv_mode" values="NTSC|Japan|PAL|Brazil" default="0"/>
@@ -72,10 +76,8 @@
         <setting label="VC-1 (decode_WVC1)" type="text" id="decode_WVC1"/>
         
         <setting label="Other" type="lsep"/>
-        <setting label="Disable CEC (hdmi_ignore_cec)" type="bool" id="hdmi_ignore_cec"/>
-        <setting label="Disable CEC initial active source (hdmi_ignore_cec_init)" type="bool" id="hdmi_ignore_cec_init"/>
         <setting label="Disable rainbow boot splash (disable_splash)" type="bool" id="disable_splash"/>
-        <setting label="Output the maximum 1.2A from USB ports (max_usb_current)" type="bool" id="max_usb_current" visible="eq(-14,16)|eq(-13,2)|eq(-13,3)|eq(-13,4)"/>
+        <setting label="Output the maximum 1.2A from USB ports (max_usb_current)" type="bool" id="max_usb_current" visible="eq(-12,16)|eq(-11,2)|eq(-11,3)|eq(-11,4)"/>
     </category>
     <category label="Settings">
         <setting label="Debug mode" type="bool" id="debug" default="false"/>
