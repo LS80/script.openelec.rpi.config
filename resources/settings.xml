@@ -42,6 +42,7 @@
         <setting label="Mode (hdmi_drive)" type="enum" id="hdmi_drive" values="-|DVI|HDMI" default="2"/>
         <setting label="Force all audio formats (hdmi_force_edid_audio)" type="bool" id="hdmi_force_edid_audio"/>
         <setting label="Colour space/range (hdmi_pixel_encoding)" type="enum" id="hdmi_pixel_encoding" values="default|RGB limited|RGB full|YCbCr limited|YCbCr full" default="0"/>
+        <setting label="Boost HDMI signal (config_hdmi_boost)" type="slider" id="config_hdmi_boost" range="0,1,7" default="0" option="int"/>
         <setting label="Read edid data from file (hdmi_edid_file)" type="bool" id="hdmi_edid_file"/>
         <setting label="Dump edid.dat" type="action" subsetting="true" visible="eq(-1,true)" action="RunScript(script.openelec.rpi.config, dump_edid)"/>
         <setting label="Disable CEC (hdmi_ignore_cec)" type="bool" id="hdmi_ignore_cec"/>
