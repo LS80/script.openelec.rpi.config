@@ -1,3 +1,6 @@
+0.20.1
+ - Set gpu_mem_1024 to gpu_mem value if not set.
+
 0.20.0
  - Added hdmi_edid_file setting and an action to dump the edid to /flash/edid.dat.
  - Added config_hdmi_boost.
