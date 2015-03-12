@@ -143,7 +143,7 @@ def maybe_init_settings():
         # if only gpu_mem is set then use that
         gpu_mem = get_config_value(config_txt, 'gpu_mem')
         if gpu_mem is not None:
-            for prop in ('gpu_mem_256', 'gpu_mem_512'):
+            for prop in ('gpu_mem_256', 'gpu_mem_512', 'gpu_mem_1024'):
                 value = get_config_value(config_txt, prop)
                 if value is None:
                     log("{}={}={}".format(prop, 'gpu_mem', gpu_mem))

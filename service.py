@@ -162,6 +162,3 @@ class MyMonitor(xbmc.Monitor):
 
 
 Main()
-
-
-
