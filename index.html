@@ -15,6 +15,7 @@
 
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
+        <ins style="display:block; float:left; width:266px;height:266px;background-image:url(https://raw.github.com/LS80/script.openelec.rpi.config/master/icon.png);background-repeat:no-repeat;"></ins>
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/LS80/script.openelec.rpi.config">View on GitHub</a>
 
@@ -31,15 +32,18 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p><img src="https://dl.dropboxusercontent.com/u/18055122/repo/script.openelec.rpi.config/icon.png" alt="icon.png"></p>
-
-<p><strong>This add-on makes it possible to edit the Raspberry Pi system <a href="http://elinux.org/RPiconfig">configuration</a> parameters in /flash/config.txt from the XBMC gui.</strong></p>
+<h5>With this add-on you can edit the Raspberry Pi system <a href="http://elinux.org/RPiconfig">configuration</a> parameters in /flash/config.txt from the Kodi gui.</h5>
+<br>
 
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <ol>
-<li>Install my XBMC repository from <a href="http://goo.gl/MpUAWy">xbmc.repo.leopold.zip</a>.</li>
+<li>Install my repository from <a href="http://goo.gl/MpUAWy">xbmc.repo.leopold.zip</a>.<br><br>
+    One way to do this is to <a href="http://wiki.openelec.tv/index.php/Ssh_commands">login via ssh</a> and run
+    <pre>wget http://goo.gl/MpUAWy -O xbmc.repo.leopold.zip</pre>
+    Then <a href="http://kodi.wiki/view/Add-on_manager#How_to_install_from_a_ZIP_file">install from zip</a>.<br><br>
+</li>
 <li>Install <strong>OpenELEC RPi Config</strong> from <strong>Leopold's Add-ons</strong> under <strong>Services</strong>.</li>
 </ol><p>By installing this way you ensure that the add-on is kept up-to-date as I push out updates to the repository.</p>
 
@@ -55,9 +59,7 @@
 
 <p>Currently only a subset of all possible properties can be configured. The complete list is shown below.</p>
 
-<h4>
-<a name="overclocking" class="anchor" href="#overclocking"><span class="octicon octicon-link"></span></a>Overclocking</h4>
-
+<h4><a name="overclocking" class="anchor" href="#overclocking"><span class="octicon octicon-link"></span></a>Overclocking</h4>
 <ul>
 <li>arm_freq</li>
 <li>core_freq</li>
@@ -66,15 +68,22 @@
 <li>over_voltage_sdram</li>
 <li>force_turbo</li>
 <li>initial_turbo</li>
-</ul><h4>
-<a name="video" class="anchor" href="#video"><span class="octicon octicon-link"></span></a>Video</h4>
+</ul>
 
+<h4><a name="hdmi" class="anchor" href="#hdmi"><span class="octicon octicon-link"></span></a>HDMI</h4>
 <ul>
-<li>gpu_mem</li>
 <li>hdmi_force_hotplug</li>
 <li>hdmi_drive</li>
 <li>hdmi_force_edid_audio</li>
 <li>hdmi_pixel_encoding</li>
+<li>config_hdmi_boost</li>
+<li>hdmi_edid_file</li>
+<li>hdmi_ignore_cec</li>
+<li>hdmi_ignore_cec_init</li>
+</ul>
+
+<h4><a name="video" class="anchor" href="#video"><span class="octicon octicon-link"></span></a>Video</h4>
+<ul>
 <li>hdmi_ignore_hotplug</li>
 <li>sdtv_mode</li>
 <li>sdtv_aspect</li>
@@ -84,16 +93,18 @@
 <li>overscan_right</li>
 <li>overscan_top</li>
 <li>overscan_bottom</li>
-</ul><h4>
-<a name="misc" class="anchor" href="#misc"><span class="octicon octicon-link"></span></a>Misc</h4>
+</ul>
 
+<h4><a name="misc" class="anchor" href="#misc"><span class="octicon octicon-link"></span></a>Misc</h4>
 <ul>
+<li>gpu_mem</li>
 <li>decode_MPG2</li>
 <li>decode_WVC1</li>
-<li>hdmi_ignore_cec</li>
-<li>hdmi_ignore_cec_init</li>
 <li>disable_splash</li>
-</ul><p>For more information see <a href="http://elinux.org/RPiconfig">http://elinux.org/RPiconfig</a>.</p>
+<li>max_usb_current</li>
+</ul>
+
+<p>For more information see <a href="http://elinux.org/RPiconfig">http://elinux.org/RPiconfig</a>.</p>
 
 <h2>
 <a name="reporting-issues" class="anchor" href="#reporting-issues"><span class="octicon octicon-link"></span></a>Reporting Issues</h2>
@@ -102,14 +113,14 @@
 
 <ul>
 <li>
-<a href="http://wiki.xbmc.org/index.php?title=Log_file#Enable_Debugging">Turn on XBMC debugging</a>.</li>
+<a href="http://kodi.wiki/view/Log_file/Advanced#Enable_debugging">Turn on debugging</a>.</li>
 <li>Turn on the 'Debug' option in the add-on advanced settings.</li>
-<li>Restart XBMC to start a clean log.</li>
+<li>Restart to start a clean log.</li>
 <li>Run the add-on again to reproduce the error.</li>
 <li>Upload the debug log. There are a couple of ways:
 
 <ol>
-<li>Log in via ssh and run pastebinit ~/.xbmc/temp/xbmc.log</li>
+<li>Log in via ssh and run pastebinit ~/.kodi/temp/kodi.log</li>
 <li>Use the add-on "XBMC Log Uploader".</li>
 </ol>
 </li>
